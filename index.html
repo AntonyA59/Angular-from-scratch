@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
     <script defer src="src/app.ts"></script>
     <title>Recréer Angular</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <article>
-            <header>
-                <h1>Recréer Angular</h1>
-            </header>
-            <input type="text" placeholder="Numéro de mobile" id="mobile-number">
-            <input type="text" placeholder="Numéro de fixe" id="fixe-number">
-            <input type="text" placeholder="Numéro de fax" id="fax-number">
-        </article>
+      <article>
+        <header>
+          <h1>Recréer Angular</h1>
+        </header>
+        <input
+          phone-number
+          type="text"
+          placeholder="Numéro de mobile"
+          id="mobile-number"
+        />
+        <input
+          phone-number
+          type="text"
+          placeholder="Numéro de fixe"
+          id="fixe-number"
+        />
+        <input
+          phone-number
+          type="text"
+          placeholder="Numéro de fax"
+          id="fax-number"
+        />
+      </article>
     </div>
-</body>
+  </body>
 </html>

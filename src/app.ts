@@ -19,8 +19,9 @@ class PhoneNumberDirective {
   }
 }
 
-const element = document.querySelector<HTMLElement>("#mobile-number");
-if (element) {
+const phoneElements = document.querySelectorAll<HTMLElement>("[phone-number]");
+
+phoneElements.forEach((element) => {
   const directive = new PhoneNumberDirective(element);
   directive.init();
-}
+});
