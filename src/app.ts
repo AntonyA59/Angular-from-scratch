@@ -1,48 +1,18 @@
-class CreditCardDirective{
-  formatCreditCardNumber(element: HTMLInputElement) {
-    const value = element.value.replace(/[^\d]/g, "").substring(0, 16);
-    const groups: string[] = [];
-    for (let i = 0; i < value.length; i += 4) {
-      groups.push(value.substring(i, i + 4));
-    }
-    element.value = groups.join(" ");
-  }
-  constructor(public element: HTMLElement) {}
-    init(){
-      this.element.style.borderColor = "blue";
-      this.element.addEventListener('input', (event) => {
-        this.formatCreditCardNumber(event.target as HTMLInputElement)
-      })
-    }
-}
+import { CreditCardDirective } from "./directives/credit-card.directive";
+import { PhoneNumberDirective } from "./directives/phone-number.directive";
 
-class PhoneNumberDirective {
-  constructor(public element: HTMLElement) {}
 
-  formatPhoneNumber(element: HTMLInputElement) {
-    const value = element.value.replace(/[^\d]/g, "").substring(0, 10);
-    const groups: string[] = [];
-    for (let i = 0; i < value.length; i += 2) {
-      groups.push(value.substring(i, i + 2));
-    }
-    element.value = groups.join(" ");
-  }
+const directives = [PhoneNumberDirective, CreditCardDirective];
+directives.forEach(directive => {
+  const elements = document.querySelectorAll<HTMLElement>(directive.selector);
 
-  init() {
-    this.element.style.borderColor = "red";
+  elements.forEach((element) => {
+    const directiveInstance = new directive(element);
+    directiveInstance.init();
 
-    this.element.addEventListener("input", (event) => {
-      this.formatPhoneNumber(event.target as HTMLInputElement);
-    });
-  }
-}
+  });
+})
 
-const phoneElements = document.querySelectorAll<HTMLElement>("[phone-number]");
-
-phoneElements.forEach((element) => {
-  const directive = new PhoneNumberDirective(element);
-  directive.init();
-});
 
 const creditCardElements = document.querySelectorAll<HTMLElement>("[credit-card]");
 
