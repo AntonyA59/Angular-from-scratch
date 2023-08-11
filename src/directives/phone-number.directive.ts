@@ -4,15 +4,16 @@ export class PhoneNumberDirective {
   constructor(public element: HTMLElement, private formatter: Formatter) { }
 
   static selector = "[phone-number]"
-
+  static providers = [{
+    provide: "formatter",
+    construct: () => new Formatter("spécifique")
+  }]
   borderColor = "red"
 
   willHaveSpaces = true;
 
 
   formatPhoneNumber(element: HTMLInputElement) {
-    this.formatter = new Formatter;
-
     element.value = this.formatter.formatNumber(element.value, 10, 2, this.willHaveSpaces)
   }
 

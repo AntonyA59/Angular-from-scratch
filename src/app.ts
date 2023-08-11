@@ -5,9 +5,23 @@ import { Formatter } from "./services/formatter";
 
 
 const directives = [PhoneNumberDirective, CreditCardDirective];
+const services: { name: string; instance: any }[] = [];
+{
 
-const formatter = new Formatter();
-const verifier = new CreditCardVerifier()
+}
+
+const providers = [
+  {
+    provide: "formatter",
+    construct: () => new Formatter("global"),
+  },
+  {
+    provide: "verifier",
+    construct: () => new CreditCardVerifier(),
+  },
+];
+
+
 
 
 
@@ -35,13 +49,31 @@ function analyseDirectiveConstructor(directive, element: HTMLElement) {
       return element;
     }
 
-    if (name === "formatter") {
-      return formatter
-    }
+    const directivesProviders = directive.providers || [];
 
-    if (name === "verifier") {
-      return verifier;
+    const directiveProvider = directivesProviders.find(p => p.provide === name)
+
+    if (directiveProvider) {
+      const instance = directiveProvider.construct();
+      return instance;
     }
+    const service = services.find((s) => s.name === name);
+    if (service) {
+      return service.instance;
+    }
+    const provider = providers.find(p => p.provide === name);
+
+    if (!provider) {
+      throw new Error("Aucun fournisseur n'existe pour le service")
+    }
+    const instance = provider.construct();
+
+    services.push({
+      name: name,
+      instance: instance
+    })
+
+    return instance;
   });
 
   return params;

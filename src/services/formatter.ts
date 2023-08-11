@@ -1,12 +1,16 @@
 export class Formatter {
-    formatNumber(initialValue:string,length: number, groupLength:number, willHaveSpaces= true){
+  constructor(name: string) {
+    console.log("Je suis le formateur", name)
 
-        const value = initialValue.replace(/[^\d]/g, "").substring(0, length);
-        const groups: string[] = [];
-        for (let i = 0; i < value.length; i += groupLength) {
-          groups.push(value.substring(i, i + groupLength));
-        }
-        return groups.join(willHaveSpaces ? " " : "");
+  }
+  formatNumber(initialValue: string, length: number, groupLength: number, willHaveSpaces = true) {
 
+    const value = initialValue.replace(/[^\d]/g, "").substring(0, length);
+    const groups: string[] = [];
+    for (let i = 0; i < value.length; i += groupLength) {
+      groups.push(value.substring(i, i + groupLength));
     }
+    return groups.join(willHaveSpaces ? " " : "");
+
+  }
 }
