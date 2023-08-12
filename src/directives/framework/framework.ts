@@ -1,4 +1,7 @@
+import { Module, ProvidersMetadata } from "./types";
+
 export class Framework {
+
     /**
      * Le tableau qui recense l'ensemble des directives déclarées par
      * mes collègue dans le projet
@@ -19,7 +22,7 @@ export class Framework {
      * Le traitement qui va instancier les directives et les greffer  
      * aux élément HTML ciblés par les sélecteurs CSS
      */
-    bootstrapApplication(metadata: { providers?: any[]; declarations: any[] }) {
+    bootstrapApplication(metadata: Module) {
         this.providers = metadata.providers || [];
         this.directives = metadata.declarations;
         this.directives.forEach((directive) => {
