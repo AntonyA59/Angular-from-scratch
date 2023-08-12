@@ -1,11 +1,16 @@
+import { Directive } from "../decorators/directive";
 import { CreditCardVerifier } from "../services/credit-card-verifier";
 import { Formatter } from "../services/formatter";
 
+@Directive(
+  {
+    selector: "[credit-card]"
+  }
+)
 export class CreditCardDirective {
 
   constructor(private verifier: CreditCardVerifier, public element: HTMLElement, private formatter: Formatter) { }
 
-  static selector = "[credit-card]"
 
   willHaveSpaces = true
 

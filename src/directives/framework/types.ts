@@ -40,3 +40,16 @@ export type Module = {
      */
     providers?: ProvidersMetadata
 }
+
+export type DirectiveMetadata = {
+
+    /**
+     * Le sélecteur CSS qui explique quels sont les éléments ciblés
+     * par cette directive
+     */
+    selector: string;
+    /**
+     * La liste des providers que la directive précise
+     */
+    providers?: ProvidersMetadata;
+}
