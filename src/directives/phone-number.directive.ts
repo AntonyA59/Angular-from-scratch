@@ -1,6 +1,8 @@
 import { Directive } from "../decorators/directive";
+import { HostListener } from "../decorators/host-listener";
 import { Input } from "../decorators/input";
 import { Formatter } from "../services/formatter"
+
 @Directive({
   selector: "[phone-number]",
   providers: [{
@@ -12,22 +14,23 @@ import { Formatter } from "../services/formatter"
 export class PhoneNumberDirective {
   constructor(public element: HTMLElement, private formatter: Formatter) { }
 
+
   @Input("border-color")
-  borderColor = "red"
+  borderColor = "red";
 
   @Input("with-spaces")
   willHaveSpaces = true;
 
 
+
+  @HostListener("input", ["event.target"])
   formatPhoneNumber(element: HTMLInputElement) {
-    element.value = this.formatter.formatNumber(element.value, 10, 2, this.willHaveSpaces)
+    element.value = this.formatter.formatNumber(element.value, 10, 2, this.willHaveSpaces);
   }
 
-
   init() {
-    this.element.addEventListener("input", (event) => {
-      this.formatPhoneNumber(event.target as HTMLInputElement);
-    });
+
     this.element.style.borderColor = this.borderColor;
+
   }
 }
