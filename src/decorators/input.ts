@@ -1,3 +1,8 @@
+/**
+ * Permet de récupérer une information dans un attribut de l'élément auquel est rattachée ma directive
+ * @param attrName L'attribut dans lequel on veut récupérer une information
+ * @returns 
+ */
 export function Input(attrName: string) {
     return function (decoratedClass, propName: string) {
         const originalInitFunction: Function = decoratedClass["init"] || function () { }

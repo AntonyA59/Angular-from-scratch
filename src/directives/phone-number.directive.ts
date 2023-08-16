@@ -1,4 +1,5 @@
 import { Directive } from "../decorators/directive";
+import { HostBinding } from "../decorators/host-binding";
 import { HostListener } from "../decorators/host-listener";
 import { Input } from "../decorators/input";
 import { Formatter } from "../services/formatter"
@@ -16,11 +17,14 @@ export class PhoneNumberDirective {
 
 
   @Input("border-color")
+  @HostBinding("style.borderColor")
   borderColor = "red";
 
   @Input("with-spaces")
   willHaveSpaces = true;
 
+  @HostBinding('placeholder')
+  placeHolderText = "Hello world"
 
 
   @HostListener("input", ["event.target"])
@@ -28,9 +32,4 @@ export class PhoneNumberDirective {
     element.value = this.formatter.formatNumber(element.value, 10, 2, this.willHaveSpaces);
   }
 
-  init() {
-
-    this.element.style.borderColor = this.borderColor;
-
-  }
 }
