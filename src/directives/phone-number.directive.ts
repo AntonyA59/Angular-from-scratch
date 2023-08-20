@@ -13,6 +13,14 @@ import { Formatter } from "../services/formatter"
 
 })
 export class PhoneNumberDirective {
+  static bindings = [
+    {
+      propName: "borderColor", attrName: "style.borderColor",
+    },
+    {
+      propName: "placeholderText", attrName: "placeholder"
+    }
+  ]
   constructor(public element: HTMLElement, private formatter: Formatter) { }
 
 
@@ -24,8 +32,20 @@ export class PhoneNumberDirective {
   willHaveSpaces = true;
 
   @HostBinding('placeholder')
-  placeHolderText = "Hello world"
+  placeholderText = "Hello World"
 
+  @HostListener("click")
+  onClick() {
+    this.placeholderText = "Hello Antony";
+
+    this.placeholderText = "Hello Magali"
+
+    this.borderColor = 'blue';
+
+    this.borderColor = 'red';
+
+    this.placeholderText = "Hello Joseph"
+  }
 
   @HostListener("input", ["event.target"])
   formatPhoneNumber(element: HTMLInputElement) {

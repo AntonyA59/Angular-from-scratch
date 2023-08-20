@@ -1,5 +1,6 @@
+import { Detector } from "./change-detector";
 import { Module, ProvidersMetadata } from "./types";
-
+import set from "lodash/set";
 export class Framework {
 
     /**
@@ -32,7 +33,26 @@ export class Framework {
                 const params = this.analyseDirectiveConstructor(directive, element)
 
                 const directiveInstance: any = Reflect.construct(directive, params);
-                directiveInstance.init();
+                const proxy = new Proxy(directiveInstance, {
+                    set(target, propName: string, value, proxy) {
+                        target[propName] = value;
+                        if (!directive.bindings) {
+                            return true;
+                        }
+                        const binding = directive.bindings.find((b) => b.propName === propName);
+
+                        if (!binding) {
+                            return true;
+                        }
+
+                        Detector.addBinding(element, binding.attrName, value);
+
+
+                        // set(target.element, binding.attrName, value)
+                        return true;
+                    }
+                });
+                proxy.init();
             });
         })
     }
