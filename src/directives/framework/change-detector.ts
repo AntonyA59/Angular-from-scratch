@@ -1,3 +1,5 @@
+import set from "lodash/set";
+import get from "lodash/get";
 export class ChangeDetector {
     bindings: { element: HTMLElement; attrName: string; value: any }[] = [];
 
@@ -7,8 +9,21 @@ export class ChangeDetector {
         );
         this.bindings.push({
             element, attrName, value,
-        })
-        console.table(this.bindings);
+        });
+    }
+
+    digest() {
+        while (this.bindings.length > 0) {
+            const binding = this.bindings.pop();
+            const actualValue = get(binding.element, binding.attrName)
+            if (actualValue === binding.value) {
+                continue;
+            }
+            console.log("Mise en place de ", binding.value, " dans l'attribut "
+                , binding.attrName, " de l'élément ", binding.element);
+            set(binding.element, binding.attrName, binding.value);
+        }
+        console.groupEnd();
     }
 }
 

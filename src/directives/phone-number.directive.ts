@@ -3,6 +3,7 @@ import { HostBinding } from "../decorators/host-binding";
 import { HostListener } from "../decorators/host-listener";
 import { Input } from "../decorators/input";
 import { Formatter } from "../services/formatter"
+import { Detector } from "./framework/change-detector";
 
 @Directive({
   selector: "[phone-number]",
@@ -38,13 +39,7 @@ export class PhoneNumberDirective {
   onClick() {
     this.placeholderText = "Hello Antony";
 
-    this.placeholderText = "Hello Magali"
-
-    this.borderColor = 'blue';
-
-    this.borderColor = 'red';
-
-    this.placeholderText = "Hello Joseph"
+    Detector.digest();
   }
 
   @HostListener("input", ["event.target"])
