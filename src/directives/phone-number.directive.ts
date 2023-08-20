@@ -3,7 +3,7 @@ import { HostBinding } from "../decorators/host-binding";
 import { HostListener } from "../decorators/host-listener";
 import { Input } from "../decorators/input";
 import { Formatter } from "../services/formatter"
-import { Detector } from "./framework/change-detector";
+import { Detector } from "../framework/change-detector";
 
 @Directive({
   selector: "[phone-number]",

@@ -1,28 +1,28 @@
 import { CreditCardDirective } from "./directives/credit-card.directive";
-import { Angular } from "./directives/framework/framework";
-import { NgZone } from "./directives/framework/zone";
+import { Angular } from "./framework/framework";
+import { NgZone } from "./framework/zone";
 import { PhoneNumberDirective } from "./directives/phone-number.directive";
 import { CreditCardVerifier } from "./services/credit-card-verifier";
 import { Formatter } from "./services/formatter";
+import { ChronoDirective } from "./directives/chrono.directive";
 
 
-NgZone.run(() => {
 
-  Angular.bootstrapApplication(
-    {
-      declarations: [PhoneNumberDirective, CreditCardDirective],
-      providers: [
-        {
-          provide: "formatter",
-          construct: () => new Formatter("global"),
-        },
-        {
-          provide: "verifier",
-          construct: () => new CreditCardVerifier(),
-        },
-      ]
-    });
-});
+Angular.bootstrapApplication(
+  {
+    declarations: [PhoneNumberDirective, CreditCardDirective, ChronoDirective],
+    providers: [
+      {
+        provide: "formatter",
+        construct: () => new Formatter("global"),
+      },
+      {
+        provide: "verifier",
+        construct: () => new CreditCardVerifier(),
+      },
+    ]
+  });
+
 
 
 

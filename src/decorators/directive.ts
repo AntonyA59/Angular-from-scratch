@@ -1,4 +1,4 @@
-import { DirectiveMetadata } from "../directives/framework/types";
+import { DirectiveMetadata } from "../framework/types";
 
 export function Directive(metadata: DirectiveMetadata) {
     return function (decoratedClass) {

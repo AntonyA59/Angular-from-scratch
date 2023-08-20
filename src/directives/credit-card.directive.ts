@@ -4,7 +4,7 @@ import { HostListener } from "../decorators/host-listener";
 import { Input } from "../decorators/input";
 import { CreditCardVerifier } from "../services/credit-card-verifier";
 import { Formatter } from "../services/formatter";
-import { Detector } from "./framework/change-detector";
+import { Detector } from "../framework/change-detector";
 
 @Directive(
   {

@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
-    />
-    <script defer src="src/app.ts" type="module"></script>
-    <title>Recréer Angular</title>
-  </head>
-  <body>
-    <div class="container">
-      <article>
-        <header>
-          <h1>Recréer Angular</h1>
-        </header>
-        <input phone-number [with-spaces]="false" border-color="green" type="text" placeholder="Numéro de mobile" id="mobile-number"/>
-        <input phone-number type="text" placeholder="Numéro de fixe" id="fixe-number"/>
-        <input credit-card type="text" placeholder="Numéro de carte bleue" id="card-number"/>
-      </article>
-    </div>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+		<script defer src="src/app.ts" type="module"></script>
+		<title>Recréer Angular</title>
+	</head>
+	<body>
+		<div class="container">
+			<article>
+				<header>
+					<h1>Recréer Angular</h1>
+				</header>
+
+				<div chrono>Chronométre</div>
+
+				<input
+					phone-number
+					[with-spaces]="false"
+					border-color="green"
+					type="text"
+					placeholder="Numéro de mobile"
+					id="mobile-number" />
+
+				<input
+					phone-number
+					type="text"
+					placeholder="Numéro de fixe"
+					id="fixe-number" />
+
+				<input
+					credit-card
+					type="text"
+					placeholder="Numéro de carte bleue"
+					id="card-number" />
+			</article>
+		</div>
+	</body>
 </html>
