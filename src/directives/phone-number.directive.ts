@@ -14,14 +14,7 @@ import { Detector } from "./framework/change-detector";
 
 })
 export class PhoneNumberDirective {
-  static bindings = [
-    {
-      propName: "borderColor", attrName: "style.borderColor",
-    },
-    {
-      propName: "placeholderText", attrName: "placeholder"
-    }
-  ]
+
   constructor(public element: HTMLElement, private formatter: Formatter) { }
 
 
@@ -32,19 +25,22 @@ export class PhoneNumberDirective {
   @Input("with-spaces")
   willHaveSpaces = true;
 
+  @HostBinding("value")
+  value = ""
+
+
   @HostBinding('placeholder')
   placeholderText = "Hello World"
 
   @HostListener("click")
   onClick() {
     this.placeholderText = "Hello Antony";
-
-    Detector.digest();
   }
 
-  @HostListener("input", ["event.target"])
-  formatPhoneNumber(element: HTMLInputElement) {
-    element.value = this.formatter.formatNumber(element.value, 10, 2, this.willHaveSpaces);
+  @HostListener("input", ["event.target.value"])
+  formatPhoneNumber(value: string) {
+    this.value = this.formatter.formatNumber(value, 10, 2, this.willHaveSpaces);
+    Detector.digest();
   }
 
 }
